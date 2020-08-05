@@ -9,12 +9,15 @@
 /* Begin PBXBuildFile section */
 		27ADA93A24DB46AE00A212BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27ADA93924DB46AE00A212BC /* AppDelegate.swift */; };
 		27ADA93C24DB46AE00A212BC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27ADA93B24DB46AE00A212BC /* SceneDelegate.swift */; };
-		27ADA93E24DB46AE00A212BC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27ADA93D24DB46AE00A212BC /* ViewController.swift */; };
+		27ADA93E24DB46AE00A212BC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27ADA93D24DB46AE00A212BC /* LoginViewController.swift */; };
 		27ADA94124DB46AE00A212BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27ADA93F24DB46AE00A212BC /* Main.storyboard */; };
 		27ADA94424DB46AE00A212BC /* Chat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 27ADA94224DB46AE00A212BC /* Chat.xcdatamodeld */; };
 		27ADA94624DB46D500A212BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27ADA94524DB46D500A212BC /* Assets.xcassets */; };
 		27ADA94924DB46D500A212BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27ADA94724DB46D500A212BC /* LaunchScreen.storyboard */; };
 		27ADA95424DB46D700A212BC /* ChatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27ADA95324DB46D700A212BC /* ChatTests.swift */; };
+		27ADA95F24DB5A2400A212BC /* ConverseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27ADA95E24DB5A2400A212BC /* ConverseViewController.swift */; };
+		27ADA96124DB5A5200A212BC /* NewContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27ADA96024DB5A5200A212BC /* NewContactViewController.swift */; };
+		27ADA96324DB5A8300A212BC /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27ADA96224DB5A8300A212BC /* ChatViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,7 +34,7 @@
 		27ADA93624DB46AE00A212BC /* Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27ADA93924DB46AE00A212BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		27ADA93B24DB46AE00A212BC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		27ADA93D24DB46AE00A212BC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		27ADA93D24DB46AE00A212BC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		27ADA94024DB46AE00A212BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		27ADA94324DB46AE00A212BC /* Chat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Chat.xcdatamodel; sourceTree = "<group>"; };
 		27ADA94524DB46D500A212BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -40,6 +43,9 @@
 		27ADA94F24DB46D700A212BC /* ChatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		27ADA95324DB46D700A212BC /* ChatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTests.swift; sourceTree = "<group>"; };
 		27ADA95524DB46D700A212BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		27ADA95E24DB5A2400A212BC /* ConverseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverseViewController.swift; sourceTree = "<group>"; };
+		27ADA96024DB5A5200A212BC /* NewContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContactViewController.swift; sourceTree = "<group>"; };
+		27ADA96224DB5A8300A212BC /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +89,7 @@
 			children = (
 				27ADA93924DB46AE00A212BC /* AppDelegate.swift */,
 				27ADA93B24DB46AE00A212BC /* SceneDelegate.swift */,
-				27ADA93D24DB46AE00A212BC /* ViewController.swift */,
+				27ADA96424DB5A9100A212BC /* Controller */,
 				27ADA93F24DB46AE00A212BC /* Main.storyboard */,
 				27ADA94524DB46D500A212BC /* Assets.xcassets */,
 				27ADA94724DB46D500A212BC /* LaunchScreen.storyboard */,
@@ -100,6 +106,17 @@
 				27ADA95524DB46D700A212BC /* Info.plist */,
 			);
 			path = ChatTests;
+			sourceTree = "<group>";
+		};
+		27ADA96424DB5A9100A212BC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				27ADA95E24DB5A2400A212BC /* ConverseViewController.swift */,
+				27ADA96024DB5A5200A212BC /* NewContactViewController.swift */,
+				27ADA93D24DB46AE00A212BC /* LoginViewController.swift */,
+				27ADA96224DB5A8300A212BC /* ChatViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,10 +220,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27ADA93E24DB46AE00A212BC /* ViewController.swift in Sources */,
+				27ADA93E24DB46AE00A212BC /* LoginViewController.swift in Sources */,
 				27ADA94424DB46AE00A212BC /* Chat.xcdatamodeld in Sources */,
 				27ADA93A24DB46AE00A212BC /* AppDelegate.swift in Sources */,
+				27ADA96324DB5A8300A212BC /* ChatViewController.swift in Sources */,
 				27ADA93C24DB46AE00A212BC /* SceneDelegate.swift in Sources */,
+				27ADA96124DB5A5200A212BC /* NewContactViewController.swift in Sources */,
+				27ADA95F24DB5A2400A212BC /* ConverseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
