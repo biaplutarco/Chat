@@ -36,15 +36,17 @@ class ChatViewController: UIViewController {
 
         tableView.register(ChatTableViewCell.self, forCellReuseIdentifier: "cell")
 
-        getMessage()
+        NotificationCenter.default.addObserver(self, selector: #selector(getMessage), name: NSNotification.Name(rawValue: "Revieve message"), object: nil)
     }
 
+    @objc
     func getMessage() {
-        SocketIOService.shared.getChatMessage { (message) in
-            DispatchQueue.main.async {
-                self.messages.append(message)
-                self.tableView.reloadData()
-            }
+
+        if let messages = ChatManager.shared.getMessagesBetween(sender: SocketIOService.shared.sender.nickname, receiver: contactName!) {
+
+            self.messages = messages
+            self.tableView.reloadData()
+            
         }
     }
 
@@ -52,7 +54,7 @@ class ChatViewController: UIViewController {
 
         if !textField.text!.isEmpty, let message = textField.text {
 
-            SocketIOService.shared.send(message: message, with: self.sender.nickname)
+            ChatManager.shared.send(to: contactName!, message: message)
 
             textField.text = nil
             textField.resignFirstResponder()

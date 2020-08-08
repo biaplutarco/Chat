@@ -24,7 +24,7 @@ class ConverseViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var onOffButton: UIBarButtonItem!
     
-    var contacts = [ContactInfo]()
+    var contacts = [Contact]()
     var isOn = true
 
     override func viewDidLoad() {
@@ -34,6 +34,36 @@ class ConverseViewController: UIViewController {
         tableView.dataSource = self
 
         tableView.register(SubtitleTableViewCell.self, forCellReuseIdentifier: "SubtitleTableViewCell")
+
+        updateContatsStates()
+        ChatManager.shared.saveMessages()
+    }
+
+    func updateContatsStates() {
+
+        SocketIOService.shared.getExitUser { exitUserNickname in
+
+            DispatchQueue.main.async {
+
+                if let index = self.contacts.firstIndex(where: { $0.nickname == exitUserNickname }) {
+                    self.contacts[index].isConnected = false
+                
+                    self.tableView.reloadData()
+                }
+            }
+        }
+
+        SocketIOService.shared.getConnectUser { connectedUser in
+
+            DispatchQueue.main.async {
+
+                if let index = self.contacts.firstIndex(where: { $0.nickname == connectedUser?.nickname }) {
+                    self.contacts[index].isConnected = true
+                
+                    self.tableView.reloadData()
+                }
+            }
+        }
     }
 
     @IBAction func add(_ sender: Any) {
@@ -58,6 +88,7 @@ class ConverseViewController: UIViewController {
                 self.isOn = false
 
                 SocketIOService.shared.sender.isConnected = false
+                self.tableView.reloadData()
             }
         } else {
 
@@ -69,8 +100,11 @@ class ConverseViewController: UIViewController {
                 self.isOn = true
 
                 SocketIOService.shared.sender.isConnected = true
+                self.tableView.reloadData()
             }
         }
+
+        updateContatsStates()
     }
 
     @IBAction func exit(_ sender: Any) {
@@ -127,7 +161,7 @@ extension ConverseViewController: NewContactViewControllerDelegate {
 
                 if contact.nickname == name && !self.contacts.contains(where: { $0.nickname == name }) {
 
-                    self.contacts.append(contact)
+                    self.contacts.append(Contact(id: contact.id, nickname: contact.nickname, isConnected: true))
                 }
             }
 
