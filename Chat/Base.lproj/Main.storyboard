@@ -64,6 +64,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
+                                            <action selector="login:" destination="EQ8-2J-mB1" eventType="touchUpInside" id="y5u-Gm-Raj"/>
                                             <segue destination="BYZ-38-t0r" kind="show" id="zV8-6j-7Zk"/>
                                         </connections>
                                     </button>
@@ -81,6 +82,9 @@
                     <navigationItem key="navigationItem" id="hpE-bv-l2D">
                         <barButtonItem key="backBarButtonItem" title="Sair" id="Hq8-gO-1ZD"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="textField" destination="rkD-Mr-Gia" id="vtK-ZF-wIh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cs0-pI-gen" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -98,7 +102,7 @@
                                 <rect key="frame" x="0.0" y="140" width="414" height="722"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="rJj-Qi-hnF" detailTextLabel="ckc-5J-hjL" style="IBUITableViewCellStyleSubtitle" id="WVb-VE-Ryv">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContactCell" textLabel="rJj-Qi-hnF" detailTextLabel="ckc-5J-hjL" style="IBUITableViewCellStyleSubtitle" id="WVb-VE-Ryv">
                                         <rect key="frame" x="0.0" y="28" width="414" height="55.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WVb-VE-Ryv" id="e3z-gg-719">
@@ -121,9 +125,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="azc-PR-k6G" kind="show" id="5lH-s7-Iz1"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -138,14 +139,30 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Conversas" id="VaT-DK-E66">
-                        <barButtonItem key="backBarButtonItem" title="Voltar" id="ElY-jz-CVG"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="YaR-Kr-r8q">
-                            <color key="tintColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <barButtonItem key="backBarButtonItem" title="Voltar" id="ElY-jz-CVG">
                             <connections>
-                                <segue destination="FoZ-OF-gWS" kind="presentation" id="JM4-0T-vKM"/>
+                                <action selector="exit:" destination="BYZ-38-t0r" id="9PK-qc-c2s"/>
                             </connections>
                         </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="YaR-Kr-r8q">
+                                <color key="tintColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="add:" destination="BYZ-38-t0r" id="Dd6-97-3Mc"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Online" style="done" id="R8U-EA-4Xk">
+                                <color key="tintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="onOff:" destination="BYZ-38-t0r" id="6Pk-c2-e0l"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <outlet property="onOffButton" destination="R8U-EA-4Xk" id="0GY-0M-DRQ"/>
+                        <outlet property="tableView" destination="Mfp-qc-yeY" id="u54-fr-qWq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -154,13 +171,13 @@
         <!--Nome do Contato-->
         <scene sceneID="tHU-wl-j2q">
             <objects>
-                <viewController id="azc-PR-k6G" customClass="ChatViewController" customModule="Chat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChatViewController" id="azc-PR-k6G" customClass="ChatViewController" customModule="Chat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bH-Fm-A7h">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="acH-8K-YDZ">
-                                <rect key="frame" x="24" y="112" width="366" height="684"/>
+                                <rect key="frame" x="24" y="68" width="366" height="728"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="jcq-Mq-DBy">
@@ -202,6 +219,9 @@
                                                 <integer key="value" value="8"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="didTapSend:" destination="azc-PR-k6G" eventType="touchUpInside" id="pyZ-nH-ad6"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -219,6 +239,10 @@
                         <viewLayoutGuide key="safeArea" id="Zeu-cU-9Ob"/>
                     </view>
                     <navigationItem key="navigationItem" title="Nome do Contato" largeTitleDisplayMode="never" id="mg5-WP-T5H"/>
+                    <connections>
+                        <outlet property="tableView" destination="acH-8K-YDZ" id="9nA-5R-zdF"/>
+                        <outlet property="textField" destination="c3c-Sw-rjz" id="nvn-Ph-eXG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sOo-EI-fX5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -227,9 +251,9 @@
         <!--New Contact View Controller-->
         <scene sceneID="dEf-A0-Kgi">
             <objects>
-                <viewController id="FoZ-OF-gWS" customClass="NewContactViewController" customModule="Chat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewContactViewController" id="FoZ-OF-gWS" customClass="NewContactViewController" customModule="Chat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fyD-hi-9t8">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GlF-Uh-JDC">
@@ -239,15 +263,21 @@
                                     <navigationItem title="Novo Contato" id="iBZ-Hy-sQg">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="qRl-49-stQ">
                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <connections>
+                                                <action selector="cancel:" destination="FoZ-OF-gWS" id="vwO-sB-vpf"/>
+                                            </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="BVm-QJ-njA">
                                             <color key="tintColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <action selector="save:" destination="FoZ-OF-gWS" id="osf-aC-HE8"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="WWP-eF-UWp">
-                                <rect key="frame" x="36" y="389" width="342" height="64.5"/>
+                                <rect key="frame" x="36" y="416" width="342" height="64.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coloque o nome do seu novo contato" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p13-dc-mh3">
                                         <rect key="frame" x="0.0" y="0.0" width="342" height="20.5"/>
@@ -280,6 +310,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="WcM-cA-6S1"/>
                     </view>
+                    <connections>
+                        <outlet property="textField" destination="gtK-xT-LWe" id="LWZ-1Q-tKJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gD5-MX-PTG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

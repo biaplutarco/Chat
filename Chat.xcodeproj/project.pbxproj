@@ -3,10 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2701500224DDFBCA00D13145 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2701500124DDFBCA00D13145 /* ChatTableViewCell.swift */; };
+		2780347624DB904000EB3AC7 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 2780347524DB904000EB3AC7 /* SocketIO */; };
+		2780347824DB906200EB3AC7 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2780347724DB906200EB3AC7 /* SocketIOManager.swift */; };
 		27ADA93A24DB46AE00A212BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27ADA93924DB46AE00A212BC /* AppDelegate.swift */; };
 		27ADA93C24DB46AE00A212BC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27ADA93B24DB46AE00A212BC /* SceneDelegate.swift */; };
 		27ADA93E24DB46AE00A212BC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27ADA93D24DB46AE00A212BC /* LoginViewController.swift */; };
@@ -31,6 +34,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2701500124DDFBCA00D13145 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
+		2780347724DB906200EB3AC7 /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		27ADA93624DB46AE00A212BC /* Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27ADA93924DB46AE00A212BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		27ADA93B24DB46AE00A212BC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2780347624DB904000EB3AC7 /* SocketIO in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +95,8 @@
 			children = (
 				27ADA93924DB46AE00A212BC /* AppDelegate.swift */,
 				27ADA93B24DB46AE00A212BC /* SceneDelegate.swift */,
+				2780347724DB906200EB3AC7 /* SocketIOManager.swift */,
+				27ADA96924DB8AA200A212BC /* Cell */,
 				27ADA96424DB5A9100A212BC /* Controller */,
 				27ADA93F24DB46AE00A212BC /* Main.storyboard */,
 				27ADA94524DB46D500A212BC /* Assets.xcassets */,
@@ -111,12 +119,20 @@
 		27ADA96424DB5A9100A212BC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				27ADA95E24DB5A2400A212BC /* ConverseViewController.swift */,
-				27ADA96024DB5A5200A212BC /* NewContactViewController.swift */,
 				27ADA93D24DB46AE00A212BC /* LoginViewController.swift */,
+				27ADA96024DB5A5200A212BC /* NewContactViewController.swift */,
+				27ADA95E24DB5A2400A212BC /* ConverseViewController.swift */,
 				27ADA96224DB5A8300A212BC /* ChatViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		27ADA96924DB8AA200A212BC /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				2701500124DDFBCA00D13145 /* ChatTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,6 +151,9 @@
 			dependencies = (
 			);
 			name = Chat;
+			packageProductDependencies = (
+				2780347524DB904000EB3AC7 /* SocketIO */,
+			);
 			productName = Chat;
 			productReference = 27ADA93624DB46AE00A212BC /* Chat.app */;
 			productType = "com.apple.product-type.application";
@@ -185,6 +204,9 @@
 				Base,
 			);
 			mainGroup = 27ADA92D24DB46AE00A212BC;
+			packageReferences = (
+				2780347424DB904000EB3AC7 /* XCRemoteSwiftPackageReference "socket" */,
+			);
 			productRefGroup = 27ADA93724DB46AE00A212BC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -224,7 +246,9 @@
 				27ADA94424DB46AE00A212BC /* Chat.xcdatamodeld in Sources */,
 				27ADA93A24DB46AE00A212BC /* AppDelegate.swift in Sources */,
 				27ADA96324DB5A8300A212BC /* ChatViewController.swift in Sources */,
+				2780347824DB906200EB3AC7 /* SocketIOManager.swift in Sources */,
 				27ADA93C24DB46AE00A212BC /* SceneDelegate.swift in Sources */,
+				2701500224DDFBCA00D13145 /* ChatTableViewCell.swift in Sources */,
 				27ADA96124DB5A5200A212BC /* NewContactViewController.swift in Sources */,
 				27ADA95F24DB5A2400A212BC /* ConverseViewController.swift in Sources */,
 			);
@@ -493,6 +517,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2780347424DB904000EB3AC7 /* XCRemoteSwiftPackageReference "socket" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/socketio/socket.io-client-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2780347524DB904000EB3AC7 /* SocketIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2780347424DB904000EB3AC7 /* XCRemoteSwiftPackageReference "socket" */;
+			productName = SocketIO;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		27ADA94224DB46AE00A212BC /* Chat.xcdatamodeld */ = {
