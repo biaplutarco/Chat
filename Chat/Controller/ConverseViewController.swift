@@ -47,7 +47,7 @@ class ConverseViewController: UIViewController {
 
                 if let index = self.contacts.firstIndex(where: { $0.nickname == exitUserNickname }) {
                     self.contacts[index].isConnected = false
-                
+
                     self.tableView.reloadData()
                 }
             }
@@ -57,9 +57,9 @@ class ConverseViewController: UIViewController {
 
             DispatchQueue.main.async {
 
-                if let index = self.contacts.firstIndex(where: { $0.nickname == connectedUser?.nickname }) {
+                if let index = self.contacts.firstIndex(where: { $0.nickname == connectedUser }) {
                     self.contacts[index].isConnected = true
-                
+
                     self.tableView.reloadData()
                 }
             }
@@ -132,9 +132,11 @@ extension ConverseViewController: UITableViewDelegate, UITableViewDataSource {
         if contacts[indexPath.row].isConnected {
 
             cell.detailTextLabel?.text = "Online"
+            cell.detailTextLabel?.textColor = .systemGreen
         } else {
 
             cell.detailTextLabel?.text = "Offline"
+            cell.detailTextLabel?.textColor = .systemRed
         }
 
         return cell

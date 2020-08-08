@@ -81,10 +81,10 @@ class SocketIOService: NSObject {
         }
     }
 
-    func getConnectUser(completion: @escaping (ContactInfo?) -> Void) {
-        
+    func getConnectUser(completion: @escaping (String?) -> Void) {
+
         socket.on("userConnectUpdate") { (data, _) in
-            let players = (data[0] as? [[String: AnyObject]])?.map(ContactInfo.init).first
+            let players = (data[0] as? String)
             completion(players)
         }
     }
@@ -98,11 +98,11 @@ class SocketIOService: NSObject {
         completion()
     }
 
-    func getExitUser(completion: @escaping (String) -> Void) {
+    func getExitUser(completion: @escaping (String?) -> Void) {
 
         socket.on("userExitUpdate") { (data, _) in
 
-            let contactOffline = (data[0] as! String)
+            let contactOffline = (data[0] as? String)
 
             completion(contactOffline)
         }
