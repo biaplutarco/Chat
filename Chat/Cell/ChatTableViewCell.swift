@@ -54,66 +54,44 @@ class ChatTableViewCell: UITableViewCell {
             colorView.backgroundColor = .systemGray6
         }
         
-        nicknameLabel.text = sender
         messageLabel.text = message
         
         backgroundColor = .clear
         
-        addSubviewConstraints()
+        addSubviewConstraints(to: sender)
         sendSubviewToBack(colorView)
     }
     
-    private func addSubviewConstraints(){
-        if SocketIOService.shared.sender.nickname == nicknameLabel.text {
+    private func addSubviewConstraints(to sender: String) {
+
+        if SocketIOService.shared.sender.nickname == sender {
+
             NSLayoutConstraint.activate([
+
                 colorView.topAnchor.constraint(equalTo: topAnchor, constant: 12),
                 colorView.bottomAnchor.constraint(equalTo: bottomAnchor),
                 colorView.trailingAnchor.constraint(equalTo: trailingAnchor),
-                
-                nicknameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-                nicknameLabel.topAnchor.constraint(equalTo: colorView.topAnchor, constant: 12),
+                colorView.leadingAnchor.constraint(equalTo: messageLabel.leadingAnchor, constant: -16),
                 
                 messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-                messageLabel.topAnchor.constraint(equalTo: nicknameLabel.bottomAnchor, constant: 3),
+                messageLabel.topAnchor.constraint(equalTo: colorView.topAnchor, constant: 12),
                 messageLabel.bottomAnchor.constraint(equalTo: colorView.bottomAnchor, constant: -12)
                 
             ])
-            
-            
-            if let name = nicknameLabel.text?.count,
-                let message = messageLabel.text?.count,
-                name > message {
-                colorView.leadingAnchor.constraint(equalTo: nicknameLabel.leadingAnchor, constant: -16).isActive = true
-
-            } else {
-                colorView.leadingAnchor.constraint(equalTo: messageLabel.leadingAnchor, constant: -16).isActive = true
-            }
         } else {
+
             NSLayoutConstraint.activate([
+
                 colorView.topAnchor.constraint(equalTo: topAnchor, constant: 12),
                 colorView.bottomAnchor.constraint(equalTo: bottomAnchor),
                 colorView.leadingAnchor.constraint(equalTo: leadingAnchor),
-                
-                nicknameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-                nicknameLabel.topAnchor.constraint(equalTo: colorView.topAnchor, constant: 12),
-                
+                colorView.trailingAnchor.constraint(equalTo: messageLabel.trailingAnchor, constant: 16),
+
                 messageLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-                messageLabel.topAnchor.constraint(equalTo: nicknameLabel.bottomAnchor, constant: 3),
+                messageLabel.topAnchor.constraint(equalTo: colorView.topAnchor, constant: 12),
                 messageLabel.bottomAnchor.constraint(equalTo: colorView.bottomAnchor, constant: -12)
                 
             ])
-            
-            
-            if let name = nicknameLabel.text?.count,
-                let message = messageLabel.text?.count,
-                name > message {
-                colorView.trailingAnchor.constraint(equalTo: nicknameLabel.trailingAnchor, constant: 16).isActive = true
-
-            } else {
-                colorView.trailingAnchor.constraint(equalTo: messageLabel.trailingAnchor, constant: 16).isActive = true
-            }
         }
-        
-
     }
 }

@@ -39,6 +39,16 @@ class ChatViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(getMessage), name: NSNotification.Name(rawValue: "Revieve message"), object: nil)
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+
+        if let messages = ChatManager.shared.getMessagesBetween(sender: SocketIOService.shared.sender.nickname, receiver: contactName!) {
+
+            self.messages = messages
+            self.tableView.reloadData()
+            
+        }
+    }
+
     @objc
     func getMessage() {
 
