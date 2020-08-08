@@ -9,41 +9,6 @@
 import UIKit
 import SocketIO
 
-struct ContactInfo {
-        
-    let identifier = UUID()
-    let id: String
-    let nickname: String
-    let isConnected: Bool
-        
-    init(data: [String: AnyObject]) {
-        self.id = data["id"] as! String
-        self.nickname = data["nickname"] as! String
-        self.isConnected = data["isConnected"] as! Bool
-    }
-}
-
-struct Contact {
-        
-    let identifier = UUID()
-    let id: String
-    let nickname: String
-    var isConnected: Bool
-}
-
-extension ContactInfo: Equatable, Hashable {
-    static func ==(lhs: ContactInfo, rhs: ContactInfo) -> Bool {
-        return lhs.nickname == rhs.nickname && lhs.isConnected == rhs.isConnected
-    }
-}
-
-struct MessageInfo {
-    var sender: String
-    var content: String
-    var date: String
-    var receiver: String
-}
-
 class SocketIOService: NSObject {
 
     static let shared = SocketIOService()

@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol NewContactViewControllerDelegate: class {
+    func saveContact(withName name: String?)
+}
+
 class NewContactViewController: UIViewController {
 
     @IBOutlet weak var textField: UITextField!
@@ -28,8 +32,4 @@ class NewContactViewController: UIViewController {
     @IBAction func cancel(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-}
-
-protocol NewContactViewControllerDelegate: class {
-    func saveContact(withName name: String?)
 }

@@ -9,12 +9,6 @@
 import Foundation
 import SocketIO
 
-struct Chat {
-
-    var keys: [String]
-    var messages: [MessageInfo]
-}
-
 class ChatManager {
 
     static let shared = ChatManager()
