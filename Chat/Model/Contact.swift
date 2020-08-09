@@ -13,7 +13,7 @@ struct ContactInfo {
     let identifier = UUID()
     let id: String
     let nickname: String
-    let isConnected: Bool
+    var isConnected: Bool
         
     init(data: [String: AnyObject]) {
         self.id = data["id"] as! String

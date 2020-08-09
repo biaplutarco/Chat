@@ -29,9 +29,19 @@ class LoginViewController: UIViewController {
 
                 guard let contacts = contacts else { return }
 
-                SocketIOService.shared.contacts.append(contentsOf: contacts)
-
                 contacts.forEach { contact in
+
+                    if SocketIOService.shared.contacts.contains(where: { $0.nickname == contact.nickname }) {
+
+                        if let index =  SocketIOService.shared.contacts.firstIndex(where: { $0.nickname == contact.nickname }) {
+
+                            SocketIOService.shared.contacts[index].isConnected = contact.isConnected
+
+                        }
+                    } else {
+
+                        SocketIOService.shared.contacts.append(contact)
+                    }
 
                     if contact.nickname == nickname {
 

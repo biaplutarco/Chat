@@ -25,7 +25,11 @@ class ConverseViewController: UIViewController {
         tableView.register(SubtitleTableViewCell.self, forCellReuseIdentifier: "SubtitleTableViewCell")
 
         updateContatsStates()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
         ChatManager.shared.saveMessages()
+        ChatManager.shared.saveTasks()
     }
 
     func updateContatsStates() {
@@ -39,6 +43,11 @@ class ConverseViewController: UIViewController {
 
                     self.tableView.reloadData()
                 }
+
+                if let index = SocketIOService.shared.contacts.firstIndex(where: { $0.nickname == exitUserNickname }) {
+                    SocketIOService.shared.contacts[index].isConnected = false
+
+                }
             }
         }
 
@@ -50,6 +59,11 @@ class ConverseViewController: UIViewController {
                     self.contacts[index].isConnected = true
 
                     self.tableView.reloadData()
+                }
+
+                if let index = SocketIOService.shared.contacts.firstIndex(where: { $0.nickname == connectedUser }) {
+                    SocketIOService.shared.contacts[index].isConnected = true
+
                 }
             }
         }
