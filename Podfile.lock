@@ -1,0 +1,24 @@
+PODS:
+  - CocoaAsyncSocket (7.6.4)
+  - JKVValue (1.3.3)
+  - RMQClient (0.11.0):
+    - CocoaAsyncSocket (~> 7.6)
+    - JKVValue (~> 1.3)
+
+DEPENDENCIES:
+  - RMQClient (~> 0.11.0)
+
+SPEC REPOS:
+  trunk:
+    - CocoaAsyncSocket
+    - JKVValue
+    - RMQClient
+
+SPEC CHECKSUMS:
+  CocoaAsyncSocket: 694058e7c0ed05a9e217d1b3c7ded962f4180845
+  JKVValue: d7941071b1cf9ba35c194fd40bcf4c4d9b5462e9
+  RMQClient: c77b0e715dbfcdfe81b304aa4f4e82b3d7ef6ff5
+
+PODFILE CHECKSUM: 92244f561aec633d6ad96e949c7dd60690becff6
+
+COCOAPODS: 1.9.3
