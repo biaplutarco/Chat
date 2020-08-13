@@ -15,3 +15,9 @@ struct MessageInfo: Codable {
     var date: String
     var receiver: String
 }
+
+extension MessageInfo: Equatable, Hashable {
+    static func ==(lhs: MessageInfo, rhs: MessageInfo) -> Bool {
+        return lhs.sender == rhs.sender && lhs.content == rhs.content && lhs.date == rhs.date && lhs.receiver == rhs.receiver
+    }
+}

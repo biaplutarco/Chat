@@ -32,9 +32,12 @@ class ChatManager {
 
                 if let index = self.chats.firstIndex(where: { $0.keys.contains(key) || $0.keys.contains(inverseKey) }) {
 
-                    self.chats[index].messages.append(message)
+                    if !self.chats[index].messages.contains(where: { $0 == message }) {
+                        self.chats[index].messages.append(message)
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "Revieve message"), object: nil)
+                    }
 
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "Revieve message"), object: nil)
+                    
                 }
             } else {
 
@@ -98,6 +101,10 @@ class ChatManager {
                     if task.receiver == nickname {
 
                         socket.send(message: task.message, with: task.sender, to: task.receiver)
+
+                        if let index = self.tasks.firstIndex(of: task) {
+                            self.tasks.remove(at: index)
+                        }
                     }
                 }
             }
@@ -150,4 +157,10 @@ struct Task: Codable {
     var sender: String
     var receiver: String
     var message: String
+}
+
+extension Task: Equatable, Hashable {
+    static func ==(lhs: Task, rhs: Task) -> Bool {
+        return lhs.sender == rhs.sender && lhs.receiver == rhs.receiver && lhs.message == rhs.message
+    }
 }
