@@ -29,7 +29,7 @@ class ConverseViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         ChatManager.shared.saveMessages()
-        ChatManager.shared.saveTasks()
+//        ChatManager.shared.saveTasks()
     }
 
     func updateContatsStates() {
@@ -62,7 +62,12 @@ class ConverseViewController: UIViewController {
                 }
 
                 if let index = SocketIOService.shared.contacts.firstIndex(where: { $0.nickname == connectedUser }) {
+
                     SocketIOService.shared.contacts[index].isConnected = true
+                    
+                    guard let connectedUser = connectedUser else { return }
+
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "receiver is on"), object: nil, userInfo: ["nickname": connectedUser])
 
                 }
             }
